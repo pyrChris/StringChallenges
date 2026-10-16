@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /***
  * Problem: You are given a long string containing a hidden word.
  * Write a function that finds and prints
@@ -17,8 +19,22 @@ public class C1_HiddenWordFinder {
     }
 
     public void findHiddenWord(String sentence) {
-        /* TODO: your code goes here */
+        ArrayList<String> storage = new ArrayList<>();
+        int marker = 0;
+        for(int i = 0;i<sentence.length();i++){
+            if(sentence.charAt(i) == ' ' || i == sentence.length()-1){
+                storage.add(sentence.substring(marker, i));
+                marker = i+1;
+            }
+        }
+        for(String word: storage){
+//            System.out.println(word);
+            if(word.startsWith("start") && word.endsWith("end")){
+                System.out.println("Hidden word: "+word.substring(5,word.length()-3));
+                break;
+            }
 
+        }
     }
 
 }

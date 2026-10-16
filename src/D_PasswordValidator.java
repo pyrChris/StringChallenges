@@ -1,3 +1,6 @@
+import static java.lang.Character.isDigit;
+import static java.lang.Character.isUpperCase;
+
 /***
  * Problem: You are creating a password validation system.
  * A valid password must meet the following requirements:
@@ -21,7 +24,22 @@ public class D_PasswordValidator {
     }
 
     public boolean isValidPassword(String password) {
-        /* TODO: your code goes here */
+        boolean hasUppercase = false;
+        boolean hasNumber = false;
+        boolean hasPassword = false;
+        for(int i=0;i<password.length();i++){
+            if(isUpperCase(password.charAt(i))){
+                hasUppercase = true;
+            }
+            if(isDigit(password.charAt(i))){
+                hasNumber = true;
+            }
+            if(i+8<password.length()){
+                if(password.substring(i,i+8).equalsIgnoreCase("password")){
+                    hasPassword = true;
+                }
+            }
+        }
 
         return true; // this is a temporary return to avoid errors
     }

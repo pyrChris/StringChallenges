@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /***
@@ -26,12 +27,26 @@ public class C2_HiddenWordHardMode {
             File file = new File(fileName);
             Scanner scanner = new Scanner(file);
 
+            String storage = "";
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                /* TODO: your code goes here */
-
+                int start = 0;
+                int end = 0;
+                for(int i=0;i<line.length();i++){
+                    if(line.charAt(i) == '*'){
+                        start = i;
+                    }
+                    else if(line.charAt(i) == '~'){
+                        end = i;
+                    }
+                }
+                if(end != 0){
+                    storage += line.substring(start+1, end);
+                    storage += " ";
+                }
             }
             scanner.close();
+            System.out.println(storage);
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred: " + e.getMessage());
         }
