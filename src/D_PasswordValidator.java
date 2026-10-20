@@ -41,7 +41,12 @@ public class D_PasswordValidator {
             }
         }
 
-        return true; // this is a temporary return to avoid errors
+        if(hasUppercase && hasNumber && !hasPassword){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 }
